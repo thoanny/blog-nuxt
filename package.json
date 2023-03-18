@@ -8,6 +8,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/apollo": "^5.0.0-alpha.5",
     "nuxt": "^3.3.1"
+  },
+  "dependencies": {
+    "string-strip-html": "^13.2.1"
   }
 }

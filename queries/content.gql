@@ -1,0 +1,69 @@
+query NewQuery($id: ID = "") {
+  page(id: $id, idType: URI) {
+    id
+    title
+    content
+  }
+  post(id: $id, idType: URI) {
+    title
+    databaseId
+    excerpt
+    date
+    content
+    featuredImage {
+      node {
+        altText
+        caption
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+        sourceUrl
+        srcSet
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+      }
+    }
+    tags {
+      nodes {
+        name
+        slug
+      }
+    }
+    commentStatus
+    commentCount
+    comments(where: {orderby: COMMENT_DATE, order: ASC, parentIn: "null"}) {
+      nodes {
+        date
+        content
+        author {
+          node {
+            avatar {
+              url
+            }
+            name
+          }
+        }
+        replies {
+          nodes {
+            date
+            content
+            author {
+              node {
+                avatar {
+                  url
+                }
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
