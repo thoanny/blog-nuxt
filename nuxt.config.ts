@@ -22,6 +22,7 @@ export default defineNuxtConfig({
         }
     },
     modules: ['@nuxtjs/apollo'],
+    plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
     apollo: {
         clients: {
             default: {

@@ -12,6 +12,7 @@
     "nuxt": "^3.3.1"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.11",
     "string-strip-html": "^13.2.1"
   }
 }
