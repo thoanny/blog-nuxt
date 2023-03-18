@@ -4,6 +4,13 @@ const seoDescription = 'Blog de Thoanny, où sont partagés des actualités de s
 const seoImage = 'TODO';
 
 export default defineNuxtConfig({
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
+    css: ['~/assets/css/main.css'],
     app: {
         head: {
             title: seoTitle,
