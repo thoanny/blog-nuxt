@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "^0.1.11",
+    "daisyui": "^2.51.4",
     "string-strip-html": "^13.2.1"
   }
 }
