@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'gutemberg';
+
+html,
+body {
+    height: 100%;
+    min-height: 100vh;
+    @apply bg-gray-100;
+}
+
+.container {
+    @apply mx-auto max-w-6xl relative my-12 px-4;
+}
+
+body {
+    &.post {
+        main>header {
+            @screen xl {
+                @apply overflow-visible;
+                height: 37rem;
+            }
+        }
+    }
+}

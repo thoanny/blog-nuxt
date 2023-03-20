@@ -10,7 +10,7 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
-    css: ['~/assets/css/main.css'],
+    css: ['~/assets/css/main.scss'],
     app: {
         head: {
             title: seoTitle,

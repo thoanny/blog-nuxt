@@ -5,10 +5,6 @@ const { data } = await useAsyncQuery(q)
 
 <template>
     <div>
-        <ul v-if="data.posts">
-            <li v-for="post in data.posts.nodes" :key="post.id">
-                <NuxtLink :to="post.uri">{{ post.title }}</NuxtLink>
-            </li>
-        </ul>
+        <Posts :data="data.posts" :hero="true" />
     </div>
 </template>

@@ -19,20 +19,30 @@ query NewQuery($id: ID = "") {
           height
           width
         }
-        sourceUrl
         srcSet
       }
     }
     categories {
       nodes {
+        id
         name
         slug
       }
     }
     tags {
       nodes {
+        id
         name
         slug
+      }
+    }
+    author {
+      node {
+        avatar {
+          url
+        }
+        name
+        description
       }
     }
     commentStatus

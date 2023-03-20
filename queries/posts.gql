@@ -1,9 +1,30 @@
-query NewQuery {
-  posts {
+query Posts {
+  posts(where: {status: PUBLISH}) {
     nodes {
       id
+      slug
       title
-      uri
+      date
+      excerpt
+      featuredImage {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+          srcSet
+        }
+      }
+      categories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+      commentCount
     }
   }
-} 
+}
