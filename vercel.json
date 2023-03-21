@@ -1,0 +1,16 @@
+{
+    "redirects": [
+        {
+            "source": "/article/:path*",
+            "destination": "/:path*"
+        },
+        {
+            "source": "/categorie/:path*",
+            "destination": "/categories/:path*"
+        },
+        {
+            "source": "/mot-cle/:path*",
+            "destination": "/mots-cles/:path*"
+        }
+    ]
+}
