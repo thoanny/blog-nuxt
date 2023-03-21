@@ -95,7 +95,7 @@ if (props.hero && props.data && props.data.nodes.length > 1) {
                         class="object-cover w-full h-full aspect-video md:aspect-square"
                         :alt="(post.featuredImage.node.altText) ? post.featuredImage.node.altText : post.title"
                         loading="lazy" :width="post.featuredImage.node.mediaDetails.width"
-                        :height="post.featuredImage.node.mediaDetails.height" />
+                        :height="post.featuredImage.node.mediaDetails.height" :srcset="post.featuredImage.node.srcSet" />
                 </figure>
                 <div class="w-full flex flex-col gap-2 dark:text-gray-200 min-w-0 px-5">
                     <h2 class="text-lg font-bold md:mt-4 w-full truncate">{{ post.title }}</h2>
