@@ -25,6 +25,11 @@ export default defineNuxtConfig({
                 { property: 'twitter:title', content: seoTitle },
                 { property: 'twitter:description', content: seoDescription },
                 { property: 'twitter:image', content: seoImage },
+                { name: 'apple-mobile-web-app-title', conten: seoTitle },
+                { name: 'application-name', conten: seoTitle },
+                { name: 'msapplication-TileColor', conten: '#93c045' },
+                { name: 'msapplication-TileImage', conten: '/mstile-144x144.png' },
+                { name: 'theme-color', conten: '#93c045' },
             ],
             link: [
                 { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
