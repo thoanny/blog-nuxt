@@ -1,19 +1,19 @@
-mutation CREATE_COMMENT($username: String, $email: String, $postId: Int, $comment: String) {
+mutation ADD_COMMENT($username: String, $email: String, $postId: Int, $comment: String) {
     createComment(
-    input: {commentOn: $postId, content: $comment, author: $username, authorEmail: $email}
+        input: {commentOn: $postId, content: $comment, author: $username, authorEmail: $email}
     ) {
-    success
-    comment {
-        date
-        content
-        author {
-        node {
-            avatar {
-            url
+        success
+        comment {
+            date
+            content
+            author {
+                node {
+                    avatar {
+                        url
+                    }
+                    name
+                }
             }
-            name
         }
-        }
-    }
     }
 }

@@ -1,4 +1,4 @@
-query Posts {
+query GET_POSTS {
   posts(where: {status: PUBLISH}) {
     nodes {
       id

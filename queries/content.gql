@@ -1,4 +1,4 @@
-query NewQuery($id: ID = "") {
+query GET_CONTENT($id: ID = "") {
   page(id: $id, idType: URI) {
     id
     title
