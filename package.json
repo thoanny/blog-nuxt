@@ -19,6 +19,7 @@
   "dependencies": {
     "@vercel/analytics": "^0.1.11",
     "daisyui": "^2.51.4",
+    "reading-time-estimator": "^1.8.1",
     "string-strip-html": "^13.2.1"
   }
 }

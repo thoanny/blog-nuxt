@@ -1,5 +1,6 @@
 <script setup>
 import { stripHtml } from 'string-strip-html';
+import { readingTime } from 'reading-time-estimator'
 import q from '@/queries/content.gql'
 
 const route = useRoute()
@@ -17,6 +18,7 @@ const nbsp = (str) =>
 
 const content = ref(null)
 const contentType = ref(null)
+const timeToRead = ref(null)
 
 if (data.value?.page) {
     content.value = data.value.page;
@@ -27,7 +29,8 @@ if (data.value?.page) {
 }
 
 if (content.value) {
-    contentType.value = content.value.__typename
+    contentType.value = content.value.__typename;
+    timeToRead.value = readingTime(stripHtml(content.value.content).result, 150, 'fr');
 }
 
 const seoTitle = content.value.title + ' | Thoanny';
@@ -136,14 +139,14 @@ useHead({
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            {timeToRead.minutes} min. à lire
+                            {{ timeToRead.minutes }} min. à lire
                         </li>
                     </ul>
                     <ul class="w-full hidden xl:flex gap-2 items-center justify-center xl:justify-start">
                         <li>
                             <a href="https://twitter.com/intent/tweet?url={encodeURIComponent(
-                                                                                                                                                                                                                                                                                        									cleanUrl
-                                                                                                                                                                                                                                                                                        								)}&text={encodeURIComponent(post.title)}&via=thoanny_"
+                                                                                                                                                                                                                                                                                                            									cleanUrl
+                                                                                                                                                                                                                                                                                                            								)}&text={encodeURIComponent(post.title)}&via=thoanny_"
                                 rel="noopener noreferrer" target="_blank"
                                 class="btn btn-circle btn-secondary text-white dark:text-gray-900"><svg
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-5 w-5">
