@@ -4,7 +4,10 @@ import { readingTime } from 'reading-time-estimator'
 import q from '@/queries/content.gql'
 
 const route = useRoute()
+const runtimeConfig = useRuntimeConfig()
 const { data } = await useAsyncQuery(q, { id: route.params.uri });
+
+const cleanUrl = runtimeConfig.public.host + route.path;
 
 const nbsp = (str) =>
     str.replace(/\s+([:;»!?/])|([«])\s+/g, (m, l, r) => {
@@ -144,9 +147,7 @@ useHead({
                     </ul>
                     <ul class="w-full hidden xl:flex gap-2 items-center justify-center xl:justify-start">
                         <li>
-                            <a href="https://twitter.com/intent/tweet?url={encodeURIComponent(
-                                                                                                                                                                                                                                                                                                            									cleanUrl
-                                                                                                                                                                                                                                                                                                            								)}&text={encodeURIComponent(post.title)}&via=thoanny_"
+                            <a :href="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(cleanUrl) + '&text=' + encodeURIComponent(content.title) + '&via=thoanny_'"
                                 rel="noopener noreferrer" target="_blank"
                                 class="btn btn-circle btn-secondary text-white dark:text-gray-900"><svg
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-5 w-5">
@@ -155,22 +156,13 @@ useHead({
                                 </svg></a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/sharer.php?u={encodeURIComponent(cleanUrl)}"
+                            <a :href="'https://www.facebook.com/sharer.php?u=' + encodeURIComponent(cleanUrl)"
                                 rel="noopener noreferrer" target="_blank"
                                 class="btn btn-circle btn-secondary text-white dark:text-gray-900"><svg
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="h-5 w-5">
                                     <path fill="currentColor"
                                         d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
                                 </svg></a>
-                        </li>
-                        <li>
-                            <button class="btn btn-circle btn-secondary text-white dark:text-gray-900 clipboard"
-                                data-clipboard-text={cleanUrl}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="h-5 w-5">
-                                    <path fill="currentColor"
-                                        d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z" />
-                                </svg>
-                            </button>
                         </li>
                     </ul>
                 </div>

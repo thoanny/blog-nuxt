@@ -4,6 +4,11 @@ const seoDescription = 'Blog de Thoanny, où sont partagés des actualités de s
 const seoImage = 'https://wp.thoanny.fr/wp-content/uploads/preview.png';
 
 export default defineNuxtConfig({
+    runtimeConfig: {
+        public: {
+            host: 'http://localhost:1234'
+        }
+    },
     postcss: {
         plugins: {
             tailwindcss: {},
