@@ -23,7 +23,7 @@ const currentYear = new Date().toLocaleDateString('FR-fr', { year: 'numeric' });
     </header>
 
     <div class="container">
-      <NuxtLoadingIndicator :height="4" color="#ffffff" />
+      <NuxtLoadingIndicator :height="4" color="#333333" />
       <NuxtPage />
     </div>
 
