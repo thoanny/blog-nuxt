@@ -10,6 +10,7 @@ if (!data.value?.tag) {
 </script>
 
 <template>
+    <!-- TODO : SEO -->
     <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">Mot-clé&nbsp;: {{ data.tag.name }}</h1>
     <Posts :data="data.tag.posts" />
 </template>

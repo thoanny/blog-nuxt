@@ -16,7 +16,9 @@ body {
 }
 
 body {
-    &.post {
+
+    &.post,
+    &.twitch {
         main>header {
             @screen xl {
                 @apply overflow-visible;
@@ -24,4 +26,8 @@ body {
             }
         }
     }
+}
+
+.tooltip:hover:before {
+    z-index: 99;
 }
