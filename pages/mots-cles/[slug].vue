@@ -5,7 +5,7 @@ const route = useRoute();
 const { data } = await useAsyncQuery(q, { id: route.params.slug });
 
 if (!data.value?.tag) {
-    throw createError({ statusCode: 404, statusMessage: 'Tag Not Found' })
+    throw createError({ statusCode: 404, statusMessage: 'Mot-clé introuvable' })
 }
 </script>
 

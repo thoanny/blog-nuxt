@@ -5,7 +5,7 @@ const route = useRoute();
 const { data } = await useAsyncQuery(q, { id: route.params.slug });
 
 if (!data.value?.category) {
-    throw createError({ statusCode: 404, statusMessage: 'Category Not Found' })
+    throw createError({ statusCode: 404, statusMessage: 'Catégorie introuvable' })
 }
 
 </script>

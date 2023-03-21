@@ -28,7 +28,7 @@ if (data.value?.page) {
 } else if (data.value?.post) {
     content.value = data.value.post;
 } else {
-    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+    throw createError({ statusCode: 404, statusMessage: 'Page introuvable' })
 }
 
 if (content.value) {
