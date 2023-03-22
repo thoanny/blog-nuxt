@@ -254,6 +254,14 @@ article {
         margin-top: calc(-37rem + 8rem);
     }
 
+    &.page {
+        header {
+            h1 {
+                @apply max-w-2xl mx-auto text-5xl;
+            }
+        }
+    }
+
     .metas {
         @apply flex flex-wrap gap-4 whitespace-nowrap text-sm uppercase font-semibold text-gray-500;
 

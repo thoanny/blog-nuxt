@@ -78,10 +78,11 @@ function menuModalClose() {
       <hr />
       <div class="flex flex-col sm:flex-row gap-4 justify-center sm:justify-between text-sm">
         <div class="text-center sm:text-left dark:text-gray-400">
-          Thoanny &copy; {{ currentYear }}
+          Fait avec ❤, TailwindCSS, DaisyUI, Nuxt et Vercel &copy; Thoanny {{ currentYear }}
         </div>
         <nav>
-          <a href="#!">Mentions légales</a>
+          <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
+          <NuxtLink to="/politique-de-confidentialite">Confidentialité</NuxtLink>
         </nav>
       </div>
     </footer>
