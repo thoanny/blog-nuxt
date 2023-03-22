@@ -1,5 +1,5 @@
-query GET_POSTS {
-  posts(where: {status: PUBLISH}) {
+query GET_POSTS($after: String = "", $limit: Int = 10) {
+  posts(where: {status: PUBLISH}, after: $after, first: $limit) {
     nodes {
       id
       slug
@@ -25,6 +25,10 @@ query GET_POSTS {
         }
       }
       commentCount
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
     }
   }
 }

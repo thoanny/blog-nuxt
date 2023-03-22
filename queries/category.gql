@@ -1,7 +1,7 @@
-query GET_CATEGORY($id: ID!) {
+query GET_CATEGORY($id: ID!, $after: String = "", $limit: Int = 10) {
     category(id: $id, idType: SLUG) {
         name
-        posts {
+        posts(after: $after, first: $limit) {
             nodes {
                 id
                 slug
@@ -26,6 +26,10 @@ query GET_CATEGORY($id: ID!) {
                     }
                 }
                 commentCount
+            }
+            pageInfo {
+                endCursor
+                hasNextPage
             }
         }
     }
