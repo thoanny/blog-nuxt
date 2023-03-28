@@ -181,7 +181,6 @@ useHead({
             <img class="mask mask-hexagon" :src="content.author.node.avatar.url" alt="" />
             <h4>{{ content.author.node.name }}</h4>
             <p v-if="content.author.node.description" v-html="content.author.node.description"></p>
-            <p>xxxx</p>
         </div>
 
         <div v-if="content.tags">
