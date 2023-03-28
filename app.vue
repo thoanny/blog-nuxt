@@ -36,7 +36,7 @@ function menuModalClose() {
     </div>
 
     <footer class="container !mb-0 pb-12">
-      <div class="social-links">
+      <div class="social-links gap-2 sm:gap-4">
         <NuxtLink to="https://twitch.tv/thoanny" target="_blank" rel="noreferrer"
           class="dark:!border-zinc-400 dark:!text-zinc-400 dark:hover:!text-zinc-900 dark:hover:!bg-zinc-400">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
@@ -176,7 +176,7 @@ footer {
   // @apply dark: text-gray-400;
 
   .social-links {
-    @apply flex justify-center gap-4;
+    @apply flex justify-center;
 
     @screen sm {
       @apply justify-end;
@@ -232,4 +232,5 @@ ul.menu {
       @apply w-6 text-center;
     }
   }
-}</style>
+}
+</style>
