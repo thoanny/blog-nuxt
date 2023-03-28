@@ -36,7 +36,7 @@ async function loadMore() {
     <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">Mot-clé&nbsp;: {{ data.tag.name }}</h1>
     <PostCard v-for="post in posts" :post="post" :key="post.id" />
     <div class="flex mt-6 justify-center" v-if="hasNextPage">
-        <button class="btn" :class="(loading) ? 'loading' : ''" @click="loadMore"
+        <button class="btn  btn-primary" :class="(loading) ? 'loading' : ''" @click="loadMore"
             v-text="(loading) ? 'Chargement en cours' : 'Afficher plus d\'articles'"></button>
     </div>
 </template>

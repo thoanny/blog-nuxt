@@ -40,7 +40,7 @@ async function loadMore() {
         <PostHero v-if="heroPost" :post="heroPost" />
         <PostCard v-for="post in posts" :post="post" :key="post.id" />
         <div class="flex mt-6 justify-center" v-if="hasNextPage">
-            <button class="btn" :class="(loading) ? 'loading' : ''" @click="loadMore"
+            <button class="btn btn-primary" :class="(loading) ? 'loading' : ''" @click="loadMore"
                 v-text="(loading) ? 'Chargement en cours' : 'Afficher plus d\'articles'"></button>
         </div>
     </div>

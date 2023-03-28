@@ -4,7 +4,7 @@ defineProps(['post'])
 
 <template>
     <NuxtLink :key="post.id" :to="'/' + post.slug"
-        class="flex flex-col md:flex-row gap-4 mt-6 items-center post-block bg-white shadow-lg rounded-2xl overflow-hidden md:pr-8">
+        class="flex flex-col md:flex-row gap-4 mt-6 items-center post-block bg-white dark:bg-zinc-800 shadow-lg rounded-2xl overflow-hidden md:pr-8">
         <figure v-if="post.featuredImage" class="w-full md:w-48 h-full shrink-0 self-start">
             <img :src="post.featuredImage.node.mediaItemUrl"
                 class="object-cover w-full h-full aspect-video md:aspect-square"

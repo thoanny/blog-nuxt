@@ -105,7 +105,8 @@ async function addComment() {
                 <span>Commentaire enregistré et en attente de validation.</span>
             </div>
         </div>
-        <form v-else class="shadow-xl rounded-xl p-4 border dark:border-gray-600 dark:text-gray-200 bg-white"
+        <form v-else
+            class="shadow-xl rounded-xl p-4 border dark:border-0 dark:border-zinc-600 dark:text-zinc-200 bg-white dark:bg-zinc-800"
             @submit.prevent="handleSubmit" autocomplete="off">
             <h2 class="text-2xl mb-2 font-semibold">Ajouter un commentaire</h2>
             <div class="alert alert-error shadow-lg !mt-4 !mb-2" v-if="Object.keys(form.errors).length > 0">
@@ -123,20 +124,20 @@ async function addComment() {
             <div class="flex gap-4">
                 <div class="form-control w-full">
                     <label class="label required" for="username">
-                        <span class="label-text dark:text-gray-200">Pseudonyme</span>
+                        <span class="label-text dark:text-zinc-200">Pseudonyme</span>
                     </label>
-                    <input type="text" placeholder="John Doe" id="username" class="input input-bordered w-full"
-                        v-model="form.username" />
+                    <input type="text" placeholder="John Doe" id="username"
+                        class="input input-bordered w-full dark:bg-zinc-900" v-model="form.username" />
                     <span class="label" v-if="form.errors.username">
                         <span class="label-text-alt text-error">{{ form.errors.username }}</span>
                     </span>
                 </div>
                 <div class="form-control w-full">
                     <label class="label" for="email">
-                        <span class="label-text dark:text-gray-200">Adresse e-mail</span>
+                        <span class="label-text dark:text-zinc-200">Adresse e-mail</span>
                     </label>
-                    <input type="text" placeholder="john.doe@fai.ext" id="email" class="input input-bordered w-full"
-                        v-model="form.email" />
+                    <input type="text" placeholder="john.doe@fai.ext" id="email"
+                        class="input input-bordered w-full dark:bg-zinc-900" v-model="form.email" />
                     <span class="label" v-if="form.errors.email">
                         <span class="label-text-alt text-error">{{ form.errors.email }}</span>
                     </span>
@@ -144,9 +145,10 @@ async function addComment() {
             </div>
             <div class="form-control">
                 <label class="label required" for="comment">
-                    <span class="label-text dark:text-gray-200">Commentaire</span>
+                    <span class="label-text dark:text-zinc-200">Commentaire</span>
                 </label>
-                <textarea class="textarea textarea-bordered h-36" id="comment" placeholder="" v-model="form.comment" />
+                <textarea class="textarea textarea-bordered h-36 dark:bg-zinc-900" id="comment" placeholder=""
+                    v-model="form.comment" />
                 <span class="label" v-if="form.errors.comment">
                     <span class="label-text-alt text-error">{{ form.errors.comment }}</span>
                 </span>
@@ -154,7 +156,7 @@ async function addComment() {
             <div class="form-control mt-1">
                 <label class="label cursor-pointer justify-start gap-2">
                     <input type="checkbox" class="toggle toggle-primary" v-model="form.save" @change="handleSave" />
-                    <span class="label-text">Enregistrer mon pseudonyme et adresse e-mail</span>
+                    <span class="label-text dark:text-zinc-200">Enregistrer mon pseudonyme et adresse e-mail</span>
                     <div class="tooltip"
                         data-tip="Ton pseudonyme et ton adresse e-mail sont enregistrés dans ton navigateur.">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
@@ -168,7 +170,7 @@ async function addComment() {
             <div class="form-control">
                 <label class="label required cursor-pointer justify-start gap-2">
                     <input type="checkbox" class="toggle toggle-primary" v-model="form.privacy" />
-                    <span class="label-text dark:text-gray-200">J'accepte la politique de confidentialité</span>
+                    <span class="label-text dark:text-zinc-200">J'accepte la politique de confidentialité</span>
                 </label>
                 <span class="label" v-if="form.errors.privacy">
                     <span class="label-text-alt text-error">{{ form.errors.privacy }}</span>
