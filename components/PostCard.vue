@@ -6,11 +6,11 @@ defineProps(['post'])
     <NuxtLink :key="post.id" :to="'/' + post.slug"
         class="flex flex-col md:flex-row gap-4 mt-6 items-center post-block bg-white dark:bg-zinc-800 shadow-lg rounded-2xl overflow-hidden md:pr-8">
         <figure v-if="post.featuredImage" class="w-full md:w-48 h-full shrink-0 self-start">
-            <img :src="post.featuredImage.node.mediaItemUrl"
+            <img :src="(post.featuredImage?.node.mediaDetails.sizes) ? post.featuredImage.node.mediaDetails.sizes[0].sourceUrl : post.featuredImage.node.mediaItemUrl"
                 class="object-cover w-full h-full aspect-video md:aspect-square"
                 :alt="(post.featuredImage.node.altText) ? post.featuredImage.node.altText : post.title" loading="lazy"
-                :width="post.featuredImage.node.mediaDetails.width" :height="post.featuredImage.node.mediaDetails.height"
-                :srcset="post.featuredImage.node.srcSet" />
+                :width="(post.featuredImage?.node.mediaDetails.sizes) ? post.featuredImage.node.mediaDetails.sizes[0].width : post.featuredImage.node.mediaDetails.width"
+                :height="(post.featuredImage?.node.mediaDetails.sizes) ? post.featuredImage.node.mediaDetails.sizes[0].height : post.featuredImage.node.mediaDetails.height" />
         </figure>
         <div class="w-full flex flex-col gap-2 dark:text-gray-200 min-w-0 px-5">
             <h2 class="text-lg font-bold md:mt-4 w-full md:truncate">{{ post.title }}</h2>

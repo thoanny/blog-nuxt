@@ -15,6 +15,11 @@ query GET_CATEGORY($id: ID!, $after: String = "", $limit: Int = 10) {
                         mediaDetails {
                             height
                             width
+                            sizes(include: POST_CARD) {
+                                height
+                                sourceUrl
+                                width
+                            }
                         }
                         srcSet
                     }
