@@ -13,7 +13,7 @@ defineProps(['post'])
                 :srcset="post.featuredImage.node.srcSet" />
         </figure>
         <div class="w-full flex flex-col gap-2 dark:text-gray-200 min-w-0 px-5">
-            <h2 class="text-lg font-bold md:mt-4 w-full truncate">{{ post.title }}</h2>
+            <h2 class="text-lg font-bold md:mt-4 w-full md:truncate">{{ post.title }}</h2>
             <div class="clamp" v-html="post.excerpt"></div>
 
             <div class="metas">
@@ -52,11 +52,15 @@ defineProps(['post'])
 </template>
 
 <style lang="scss" scoped>
-.clamp p {
+.clamp {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: initial;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    @screen md {
+        -webkit-line-clamp: 2;
+    }
 }
 
 .post-block {

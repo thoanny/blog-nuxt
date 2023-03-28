@@ -22,7 +22,7 @@ defineProps(['post'])
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h1 class="mb-3 text-2xl md:text-4xl font-bold">{{ post.title }}</h1>
+                    <h1 class="mb-3 text-2xl md:text-4xl font-bold clamp-2">{{ post.title }}</h1>
                     <div class="flex gap-4 mb-4 justify-center text-white">
                         <span class="date flex items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -56,7 +56,7 @@ defineProps(['post'])
                             {{ post.commentCount }}
                             {{ post.commentCount < 2 ? 'commentaire' : 'commentaires' }} </span>
                     </div>
-                    <div class="mb-5 text-lg clamp" v-html="post.excerpt"></div>
+                    <div class="mb-5 text-lg clamp-3" v-html="post.excerpt"></div>
                     <NuxtLink :to="post.slug" class="btn btn-primary">Lire l'article</NuxtLink>
                 </div>
             </div>
@@ -65,10 +65,25 @@ defineProps(['post'])
 </template>
 
 <style lang="scss" scoped>
-.clamp p {
+.clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    @screen sm {
+        -webkit-line-clamp: initial;
+    }
+}
+
+.clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @screen sm {
+        -webkit-line-clamp: initial;
+    }
 }
 </style>
