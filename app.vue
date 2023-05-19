@@ -87,6 +87,7 @@ function menuModalClose() {
           Fait avec ❤, TailwindCSS, DaisyUI, Nuxt et Vercel &copy; Thoanny {{ currentYear }}
         </div>
         <nav class="dark:text-zinc-400">
+          <NuxtLink to="/mes-jeux">Mes jeux</NuxtLink>
           <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
           <NuxtLink to="/politique-de-confidentialite">Confidentialité</NuxtLink>
         </nav>
