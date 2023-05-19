@@ -4,10 +4,10 @@ defineProps(['post'])
 
 <template>
     <div>
-        <div class="hero aspect-square md:aspect-video rounded-2xl overflow-hidden shadow-xl"
-            :style="'background-image: url(' + post.featuredImage.node.mediaItemUrl + ');'">
-            <div class="hero-overlay bg-black bg-opacity-60">&nbsp;</div>
-            <div class="hero-content text-center text-white">
+        <div class="hero aspect-square md:aspect-video rounded-2xl overflow-hidden shadow-xl">
+            <img :src="post.featuredImage.node.mediaItemUrl" alt="" class="w-full h-full object-cover blur-sm z-10">
+            <div class="hero-overlay bg-black bg-opacity-60 z-20"></div>
+            <div class="hero-content text-center text-white z-30">
                 <div class="max-w-2xl px-4">
                     <div class="flex justify-center items-center gap-2 opacity-75 uppercase font-semibold mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
