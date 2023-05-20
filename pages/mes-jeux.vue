@@ -7,7 +7,8 @@ const { data: games } = await useFetch('https://wp.thoanny.fr/wp-admin/admin-aja
 <template>
     <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">Liste de mes jeux</h1>
 
-    <div v-if="games">
+    <button v-if="!games" class="btn btn-ghost loading">Chargement...</button>
+    <div v-else="games">
         <!-- TODO -->
         <div class="flex gap-2 items-center mb-4">
             <span class="font-semibold">Filtrer :</span>
@@ -18,7 +19,7 @@ const { data: games } = await useFetch('https://wp.thoanny.fr/wp-admin/admin-aja
             <button class="btn btn-sm">Articles</button>
         </div>
 
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <div class="card card-compact bg-base-100 shadow-xl" v-for="game in  games.data " :key="game.id">
                 <figure><img :src="game.thumbnail" alt="" class="w-full" /></figure>
                 <div class="card-body">
