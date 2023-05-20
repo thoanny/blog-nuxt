@@ -1,6 +1,6 @@
 <script setup>
 
-const { data: games } = await useFetch('https://wp.thoanny.fr/wp-admin/admin-ajax.php?action=thoanny_games');
+const { data: myGames } = await useFetch('https://wp.thoanny.fr/wp-admin/admin-ajax.php?action=thoanny_games');
 
 const platforms = {
     'Amazon Games': 'Amazon',
@@ -11,31 +11,58 @@ const platforms = {
     'Ubisoft Connect': 'Ubisoft'
 };
 
+const allGames = ref(myGames.value.data);
+const games = ref(myGames.value.data);
+const filters = ref(null);
+
+function handleFilter(f) {
+    if (filters.value === f) {
+        filters.value = null;
+        games.value = allGames.value;
+    } else {
+        filters.value = f;
+        if (f === 'played' || f === 'streamed' || f === 'liked') {
+            games.value = allGames.value.filter(game => game[f] == true);
+        } else {
+            games.value = allGames.value.filter(game => game[f]);
+        }
+    }
+}
+
 </script>
 
 <template>
     <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">
         Liste de mes jeux vidéo
-        <span v-if="games">
-            ({{ games.data.length }})
+        <span v-if="games" class="text-base">
+            (<span v-if="filters">{{ games.length }}/</span>{{ allGames.length }})
         </span>
     </h1>
 
     <button v-if="!games" class="btn btn-ghost loading">Chargement...</button>
     <div v-else="games">
-        <!-- TODO -->
         <div class="flex gap-2 items-center mb-6">
             <span class="font-semibold">Filtrer :</span>
-            <button class="btn btn-sm btn-outline">Joués</button>
-            <button class="btn btn-sm btn-outline">Streamés</button>
-            <button class="btn btn-sm btn-outline">Aimés</button>
-            <button class="btn btn-sm btn-outline">VOD</button>
-            <button class="btn btn-sm btn-outline">Articles</button>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'played', 'btn-outline': !filters || filters != 'played' }"
+                @click="handleFilter('played')">Joués</button>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'streamed', 'btn-outline': !filters || filters != 'streamed' }"
+                @click="handleFilter('streamed')">Streamés</button>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'liked', 'btn-outline': !filters || filters != 'liked' }"
+                @click="handleFilter('liked')">Aimés</button>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'vod', 'btn-outline': !filters || filters != 'vod' }"
+                @click="handleFilter('vod')">VOD</button>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'post', 'btn-outline': !filters || filters != 'post' }"
+                @click="handleFilter('post')">Articles</button>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-            <div class="card card-compact bg-base-100 shadow-xl" v-for="game in games.data " :key="game.id">
-                <figure>
+            <div class="card card-compact bg-base-100 shadow-xl" v-for="game in games " :key="game.id">
+                <figure v-if="game.thumbnail">
                     <img :src="game.thumbnail" alt="" class="w-full" loading="lazy" />
                 </figure>
                 <div class="card-body">
@@ -87,7 +114,7 @@ const platforms = {
                                         d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
                                 </svg>
                             </span>
-                            <a href="{{ game.vod }}" class="btn btn-circle btn-sm btn-secondary text-white" target="_blank"
+                            <a :href="game.vod" class="btn btn-circle btn-sm btn-secondary text-white" target="_blank"
                                 v-else>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5"
                                     viewBox="0 0 576 512">
@@ -105,7 +132,7 @@ const platforms = {
                                         d="M352 64c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32zm96 128c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32zM0 448c0 17.7 14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32zM352 320c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32H320c17.7 0 32-14.3 32-32z" />
                                 </svg>
                             </span>
-                            <a href="{{ game.post }}" class="btn btn-circle btn-sm btn-secondary text-white" target="_blank"
+                            <a :href="game.post" class="btn btn-circle btn-sm btn-secondary text-white" target="_blank"
                                 v-else>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4"
                                     viewBox="0 0 448 512">
