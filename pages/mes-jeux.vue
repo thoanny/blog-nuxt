@@ -33,7 +33,7 @@ function handleFilter(f) {
 
 <template>
     <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">
-        Liste de mes jeux vidéo
+        Liste de mes jeux
         <span v-if="games" class="text-base">
             (<span v-if="filters">{{ games.length }}/</span>{{ allGames.length }})
         </span>
@@ -41,7 +41,7 @@ function handleFilter(f) {
 
     <button v-if="!games" class="btn btn-ghost loading">Chargement...</button>
     <div v-else="games">
-        <div class="flex gap-2 items-center mb-6">
+        <div class="flex flex-wrap text-nowrap gap-2 items-center mb-6">
             <span class="font-semibold">Filtrer :</span>
             <button class="btn btn-sm"
                 :class="{ 'btn-primary': filters == 'played', 'btn-outline': !filters || filters != 'played' }"
@@ -60,7 +60,7 @@ function handleFilter(f) {
                 @click="handleFilter('post')">Articles</button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             <div class="card card-compact bg-base-100 shadow-xl" v-for="game in games " :key="game.id">
                 <figure v-if="game.thumbnail">
                     <img :src="game.thumbnail" alt="" class="w-full" loading="lazy" />
