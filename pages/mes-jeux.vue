@@ -2,33 +2,51 @@
 
 const { data: games } = await useFetch('https://wp.thoanny.fr/wp-admin/admin-ajax.php?action=thoanny_games');
 
+const platforms = {
+    'Amazon Games': 'Amazon',
+    'Epic Games Store': 'EGS',
+    'EA Origin': 'EA',
+    'Legacy Games': 'Legacy',
+    'Microsoft Store': 'Microsoft',
+    'Ubisoft Connect': 'Ubisoft'
+};
+
 </script>
 
 <template>
-    <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">Liste de mes jeux</h1>
+    <h1 class="text-4xl mb-6 font-bold dark:text-gray-200">
+        Liste de mes jeux vidéo
+        <span v-if="games">
+            ({{ games.data.length }})
+        </span>
+    </h1>
 
     <button v-if="!games" class="btn btn-ghost loading">Chargement...</button>
     <div v-else="games">
         <!-- TODO -->
-        <div class="flex gap-2 items-center mb-4">
+        <div class="flex gap-2 items-center mb-6">
             <span class="font-semibold">Filtrer :</span>
-            <button class="btn btn-sm">Joués</button>
-            <button class="btn btn-sm">Streamés</button>
-            <button class="btn btn-sm">Aimés</button>
-            <button class="btn btn-sm">VOD</button>
-            <button class="btn btn-sm">Articles</button>
+            <button class="btn btn-sm btn-outline">Joués</button>
+            <button class="btn btn-sm btn-outline">Streamés</button>
+            <button class="btn btn-sm btn-outline">Aimés</button>
+            <button class="btn btn-sm btn-outline">VOD</button>
+            <button class="btn btn-sm btn-outline">Articles</button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            <div class="card card-compact bg-base-100 shadow-xl" v-for="game in  games.data " :key="game.id">
-                <figure><img :src="game.thumbnail" alt="" class="w-full" /></figure>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="card card-compact bg-base-100 shadow-xl" v-for="game in games.data " :key="game.id">
+                <figure>
+                    <img :src="game.thumbnail" alt="" class="w-full" loading="lazy" />
+                </figure>
                 <div class="card-body">
-                    <h2 class="card-title justify-center font-bold">
+                    <h2 class="card-title text-base text-center font-bold truncate block w-full">
                         {{ game.name }}
                     </h2>
                     <div class="card-actions justify-center mb-2">
                         <div class="badge badge-sm">{{ game.release }}</div>
-                        <div class="badge badge-sm badge-outline" v-for="platform in game.platforms">{{ platform }}</div>
+                        <div class="badge badge-sm badge-outline" v-for="platform in game.platforms">
+                            {{ (platforms[platform]) ? platforms[platform] : platform }}
+                        </div>
                     </div>
                     <div class="card-actions justify-center">
                         <div class="tooltip" :data-tip="(game.played) ? 'J\'y ai joué' : 'Je n\'y ai pas joué'">
