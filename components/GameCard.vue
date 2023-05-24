@@ -96,3 +96,9 @@ defineProps(['game', 'platforms'])
         </div>
     </div>
 </template>
+
+<style scoped>
+.aspect-3-4 {
+    aspect-ratio: 3/4;
+}
+</style>
