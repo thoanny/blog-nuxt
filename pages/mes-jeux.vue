@@ -17,7 +17,7 @@ const platforms = {
 const allGames = ref(myGames.value.data);
 const games = ref(myGames.value.data);
 const filters = ref(null);
-const display = ref('list');
+const display = ref('card');
 
 function handleFilter(f) {
     if (filters.value === f) {
