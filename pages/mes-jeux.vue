@@ -21,8 +21,10 @@ function handleFilter(f) {
         games.value = allGames.value;
     } else {
         filters.value = f;
-        if (f === 'played' || f === 'streamed' || f === 'liked') {
+        if (f === 'liked') {
             games.value = allGames.value.filter(game => game[f] == true);
+        } else if (f === 'wishlist' || f === 'played' || f === 'streamed') {
+            games.value = allGames.value.filter(game => game['status'] == f);
         } else {
             games.value = allGames.value.filter(game => game[f]);
         }
@@ -43,6 +45,9 @@ function handleFilter(f) {
     <div v-else="games">
         <div class="flex flex-wrap text-nowrap gap-2 items-center mb-6">
             <span class="font-semibold">Filtrer :</span>
+            <button class="btn btn-sm"
+                :class="{ 'btn-primary': filters == 'wishlist', 'btn-outline': !filters || filters != 'wishlist' }"
+                @click="handleFilter('wishlist')">Liste de souhaits</button>
             <button class="btn btn-sm"
                 :class="{ 'btn-primary': filters == 'played', 'btn-outline': !filters || filters != 'played' }"
                 @click="handleFilter('played')">Joués</button>
@@ -76,9 +81,19 @@ function handleFilter(f) {
                         </div>
                     </div>
                     <div class="card-actions justify-center">
-                        <div class="tooltip" :data-tip="(game.played) ? 'J\'y ai joué' : 'Je n\'y ai pas joué'">
-                            <span class="btn btn-circle btn-sm"
-                                :class="{ 'btn-disabled': !game.played, 'btn-secondary text-white': game.played }">
+
+                        <div class="tooltip" data-tip="Dans ma liste de souhaits" v-if="game.status == 'wishlist'">
+                            <span class="btn btn-circle btn-sm btn-secondary text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor"
+                                    class="w-5 h-5">
+                                    <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="tooltip" data-tip="J'y ai joué" v-else-if="game.status == 'played'">
+                            <span class="btn btn-circle btn-sm btn-secondary text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor"
                                     class="w-5 h-5">
                                     <path
@@ -86,9 +101,9 @@ function handleFilter(f) {
                                 </svg>
                             </span>
                         </div>
-                        <div class="tooltip" :data-tip="(game.played) ? 'Je l\'ai streamé' : 'Je ne l\'ai pas streamé'">
-                            <span class="btn btn-circle btn-sm"
-                                :class="{ 'btn-disabled': !game.streamed, 'btn-secondary text-white': game.streamed }">
+
+                        <div class="tooltip" data-tip="Je l'ai streamé" v-else-if="game.status == 'streamed'">
+                            <span class="btn btn-circle btn-sm btn-secondary text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"
                                     class="w-4 h-4">
                                     <path
@@ -96,6 +111,17 @@ function handleFilter(f) {
                                 </svg>
                             </span>
                         </div>
+
+                        <div class="tooltip" data-tip="Je n'y ai pas joué" v-else>
+                            <span class="btn btn-circle btn-sm btn-disabled">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor"
+                                    class="w-5 h-5">
+                                    <path
+                                        d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z" />
+                                </svg>
+                            </span>
+                        </div>
+
                         <div :class="{ 'tooltip': game.like }" data-tip="'J\'ai beaucoup aimé'">
                             <span class="btn btn-circle btn-sm"
                                 :class="{ 'btn-disabled': !game.liked, 'btn-secondary text-white': game.liked }">
