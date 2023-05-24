@@ -68,7 +68,7 @@ function handleFilter(f) {
         <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             <div class="card card-compact bg-base-100 shadow-xl" v-for="game in games " :key="game.id">
                 <figure v-if="game.thumbnail">
-                    <img :src="game.thumbnail" alt="" class="w-full" loading="lazy" />
+                    <img :src="game.thumbnail" alt="" class="w-full aspect-3-4" loading="lazy" />
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-base text-center font-bold truncate block w-full">
@@ -173,3 +173,9 @@ function handleFilter(f) {
         </div>
     </div>
 </template>
+
+<style scoped>
+.aspect-3-4 {
+    aspect-ratio: 3/4;
+}
+</style>
