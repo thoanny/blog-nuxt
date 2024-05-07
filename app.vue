@@ -26,6 +26,7 @@ function menuModalClose() {
           <NuxtLink to="/categories/jeux-video">🎮 Jeux vidéo</NuxtLink>
           <NuxtLink to="/categories/streaming">🟣 Streaming</NuxtLink>
           <NuxtLink to="/twitch">📺 Twitch</NuxtLink>
+          <NuxtLink to="/t-potes">🔥 T-potes</NuxtLink>
           <NuxtLink
             class="btn bg-white border-white text-black hover:text-white rounded-full"
             to="https://www.patreon.com/thoanny"
@@ -236,6 +237,14 @@ function menuModalClose() {
               @click="menuModalClose"
               class="dark:hover:bg-zinc-700 dark:active:text-neutral dark:active:bg-primary"
               ><span>📺</span>Twitch
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink
+              to="/t-potes"
+              @click="menuModalClose"
+              class="dark:hover:bg-zinc-700 dark:active:text-neutral dark:active:bg-primary"
+              ><span>🔥</span>T-potes
             </NuxtLink>
           </li>
           <li>

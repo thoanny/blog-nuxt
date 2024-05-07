@@ -1,0 +1,17 @@
+query GET_TPOTES {
+  tPotes(first: 1000, where: { orderby: { field: TITLE, order: ASC } }) {
+    nodes {
+      featuredImage {
+        node {
+          sourceUrl(size: THUMBNAIL)
+        }
+      }
+      id
+      title(format: RENDERED)
+      tPotes {
+        source
+        startAt
+      }
+    }
+  }
+}

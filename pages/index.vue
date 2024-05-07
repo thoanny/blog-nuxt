@@ -42,7 +42,7 @@ const { data: patreonPosts } = await useFetch(
 
 <template>
   <div>
-    <div v-if="patreonPosts.data">
+    <div v-if="patreonPosts?.data">
       <div class="grid gric-cols-2 lg:grid-cols-2 gap-4 lg:gap-6 mb-8">
         <PatreonPostCard
           v-for="post in patreonPosts.data.slice(0, 4)"
